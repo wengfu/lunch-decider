@@ -3,13 +3,16 @@
 <head>
     <title>Title</title>
     <link rel="stylesheet" type="text/css" href="lib/lib.css">
+    <link rel="stylesheet" type="text/css" href="app.css">
     <script type="application/javascript" src="lib/lib.js"></script>
     <script src="app.js"></script>
 </head>
 <body>
 
-<div ng-app="appModule">
-    <div ng-controller="mainController"></div>
+<div class="wrapper" ng-app="appModule">
+    <header ng-include src="'header/header.html'"></header>
+    <div ng-include src="'main-container/main.html'" class="main-container"></div>
+    <!--<footer ng-include src="'footer.html'"></footer>-->
 </div>
 
 

@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Baloo');
+@import "header/header.css";
+@import "main-container/main.css";
+
+body{
+    background-color: #f9f9f9;
+}
+.wrapper{
+    height: 100%;
+}

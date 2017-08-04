@@ -5,7 +5,7 @@
     width: 100%;
 }
 .maps-container{
-    /*width: 50%;*/
+    width: 50%;
     min-width: 450px;
     min-height: 450px;
     float: right;

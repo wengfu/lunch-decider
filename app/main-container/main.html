@@ -1,5 +1,10 @@
 <div ng-controller="mainController">
     <div class="maps-container" id="mapContainer"></div>
     <div class="roulette-container"></div>
-    <div class="list-container"></div>
+    <div class="list-container">
+        <div class="restaurant-item" ng-repeat="restaurant in restaurantsArray">
+            <span class="restaurant-name">{{ restaurant.name }}</span>
+            <span class="remove float-right" ng-click="removeRestaurant(restaurant.id)">X</span>
+        </div>
+    </div>
 </div>

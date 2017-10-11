@@ -8,6 +8,8 @@ module.controller('mainController', ['$scope', 'MapService', 'RestaurantService'
     var defaultCenter = { lat: 39.9523789, lng: -75.1635996 };
     var secondMarkerLocation = { lat: 39.234523, lng: -75.2342323 };
     var map;
+    window.scope = $scope;
+    $scope.restaurantsArray = [];
 
     function init(){
       MapService.initMap('mapContainer', defaultCenter);
@@ -25,11 +27,19 @@ module.controller('mainController', ['$scope', 'MapService', 'RestaurantService'
         };
         map.setCenter(pos);
         MapService.setMarker(pos);
-        RestaurantService.initRestaurants(pos, '500');
+        RestaurantService.initRestaurants(pos, '500').then(function(response){
+          $scope.restaurantsArray = response;
+        });
       }, function(){
         handleLocationError();
       })
     }
+
+    $scope.removeRestaurant = function(restaurantId){
+      $scope.restaurantsArray = _.filter($scope.restaurantsArray, function(r){
+        return r.id !== restaurantId;
+      });
+    };
 
     // var userMarker;
     // google.maps.event.addListener(map, 'click', function(event){

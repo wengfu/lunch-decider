@@ -1,3 +1,6 @@
+.float-right{
+    float: right;
+}
 .main-container{
     position: absolute;
     padding-top: 60px;
@@ -19,11 +22,27 @@
     margin: 50px 10px 10px 50px;
     background-color: #eeeeee;
 }
+
+/* ------- List Container ------- */
+
 .list-container{
     position: relative;
     width: 35%;
-    min-height: 330px;
+    height: 330px;
+    overflow: scroll;
     float: left;
     margin: 10px 10px 60px 50px !important;
     background-color: #eeeeee;
+}
+.restaurant-item{
+    color: #d74828;
+    font-family: 'Baloo', cursive;
+    margin: 3px 10px;
+}
+.restaurant-name{
+    font-size: 15px;
+}
+.remove{
+    font-size: 13px;
+    cursor: pointer;
 }

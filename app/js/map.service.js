@@ -11,14 +11,14 @@ angular.module('appModule')
     _map = new google.maps.Map(
       document.getElementById(mapContainerElementId), {
         center: defaultCenter,
-        zoom: 12
+        zoom: 16
       });
   };
   service.getMap = function(){
     return _map;
   };
   service.setMarker = function(position){
-    var marker = new google.maps.Marker({
+    return new google.maps.Marker({
       position: position,
       map: _map
     });

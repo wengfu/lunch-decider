@@ -17,11 +17,7 @@ angular.module('appModule')
       type: ['restaurant']
     };
     var callback = function(results, status){
-      if (status == google.maps.places.PlacesServiceStatus.OK) {
-        for (var i = 0; i < results.length; i++) {
-          // console.log(results[i])
-          MapService.setMarker(results[i].geometry.location);
-        }
+      if(status == google.maps.places.PlacesServiceStatus.OK){
         deferred.resolve(results);
       }
     };

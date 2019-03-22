@@ -1,0 +1,10 @@
+<div class="main-container">
+    <div class="maps-container" id="mapContainer" #mapContainer></div>
+    <div class="roulette-container"></div>
+    <div class="list-container">
+        <div class="restaurant-item" *ngFor="let restaurant of restaurantsArray">
+            <span class="restaurant-name">{{ restaurant.place.name }}</span>
+            <span class="remove float-right" (click)="removeRestaurant(restaurant.place.id)">X</span>
+        </div>
+    </div>
+</div>

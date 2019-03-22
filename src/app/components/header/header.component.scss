@@ -1,0 +1,21 @@
+.header-bar{
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  position: fixed;
+  border-bottom: 2px solid #d74828;
+  z-index: 1000;
+}
+.header-inner{
+  padding: 13px 30px;
+  width: 250px;
+  font-size: 25px;
+  color: #d74828;
+  font-family: 'Baloo', cursive;
+}
+.header-right{
+  float: right;
+  padding: 18px;
+  position: relative;
+}

@@ -53,12 +53,14 @@ export class MainComponent implements OnInit {
         this.mapService.setMarker(pos);
         this.restaurantService.initRestaurants(pos, '500').subscribe((response) => {
             for (var i = 0; i < response.length; i++) {
+                const restaurant = response[i];
                 this.restaurantsArray.push({
                     restaurantId: i,
-                    place: response[i],
-                    marker: this.mapService.setMarker(response[i].geometry.location)
+                    place: restaurant,
+                    marker: this.mapService.setMarker(restaurant.geometry.location, 'restaurant')
                 });
             }
+            // console.dir(this.restaurantsArray)
         });
     }
     

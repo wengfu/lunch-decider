@@ -22,13 +22,18 @@ export class MapService {
         return this._map;
     };
 
-    public setMarker(position) {
+    public setMarker(position, iconType?: string) {
+        let icon;
+        if (iconType) {
+            icon = {
+                url: `../../assets/icons/${iconType}.png`,
+                scaledSize: new google.maps.Size(23, 32)
+            };
+        }
         return new google.maps.Marker({
             position: position,
             map: this._map,
-            // icon: {
-            //     url: "http://maps.google.com/mapfiles/ms/icons/restaurant.png"
-            // }
+            icon: icon
         });
     };
 }

@@ -2,6 +2,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MapService } from '../../service/map.service';
 import { RestaurantService } from '../../service/restaurant.service';
+import { Restaurant } from '../../models/restaurant.interface';
 import * as _ from 'lodash';
 
 @Component({
@@ -16,7 +17,7 @@ export class MainComponent implements OnInit {
     public defaultCenter = { lat: 39.9523789, lng: -75.1635996 };
     public secondMarkerLocation = { lat: 39.234523, lng: -75.2342323 };
     public map: google.maps.Map;
-    public restaurantsArray = [];
+    public restaurantsArray: Restaurant[] = [];
     public userMarker;
     
     constructor(
@@ -53,18 +54,17 @@ export class MainComponent implements OnInit {
         this.mapService.setMarker(pos);
         this.restaurantService.initRestaurants(pos, '500').subscribe((response) => {
             for (var i = 0; i < response.length; i++) {
-                const restaurant = response[i];
+                const place = response[i];
                 this.restaurantsArray.push({
-                    restaurantId: i,
-                    place: restaurant,
-                    marker: this.mapService.setMarker(restaurant.geometry.location, 'restaurant')
+                    id: i,
+                    place: place,
+                    marker: this.mapService.setMarker(place.geometry.location, 'restaurant_red')
                 });
             }
-            // console.dir(this.restaurantsArray)
         });
     }
     
-    public removeRestaurant(restaurantId){
+    public removeRestaurant(restaurantId: number){
         this.restaurantsArray = _.filter(this.restaurantsArray, (r) => {
             if(r.place.id === restaurantId){
                 r.marker.setMap(null);
@@ -72,6 +72,15 @@ export class MainComponent implements OnInit {
             }
             return r.place.id !== restaurantId;
         });
+    }
+
+    public hoverRestaurant(restaurant: Restaurant, enterLeave: string) {
+        if (enterLeave === 'enter') {
+            this.mapService.setIcon(restaurant.marker, 'restaurant_blue', true);
+        } else {
+            this.mapService.setIcon(restaurant.marker, 'restaurant_red', false);
+        }
+        
     }
 
     public handleLocationError() {}

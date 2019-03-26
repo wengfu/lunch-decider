@@ -2,7 +2,12 @@
     <div class="maps-container" id="mapContainer" #mapContainer></div>
     <div class="roulette-container"></div>
     <div class="list-container">
-        <div class="restaurant-item" *ngFor="let restaurant of restaurantsArray">
+        <div
+                class="restaurant-item"
+                *ngFor="let restaurant of restaurantsArray; let i = index;"
+                (mouseenter)="hoverRestaurant(restaurant, 'enter')"
+                (mouseleave)="hoverRestaurant(restaurant, 'leave')"
+        >
             <span class="restaurant-name">{{ restaurant.place.name }}</span>
             <span class="remove float-right" (click)="removeRestaurant(restaurant.place.id)">X</span>
         </div>

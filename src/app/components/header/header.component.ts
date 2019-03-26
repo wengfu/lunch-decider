@@ -6,4 +6,9 @@ import { Component } from '@angular/core';
     styleUrls: ['./header.component.scss'],
 })
 
-export class HeaderComponent {}
+export class HeaderComponent {
+    
+    openGithub() {
+        window.open("https://github.com/wengfu/lunch-decider", "_blank");
+    }
+}

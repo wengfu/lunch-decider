@@ -13,9 +13,15 @@
   font-size: 25px;
   color: #d74828;
   font-family: 'Baloo', cursive;
+  margin-left: 28px;
 }
 .header-right{
   float: right;
-  padding: 18px;
   position: relative;
+  background: url(../../../assets/icons/GitHub-Mark-64px.png);
+  background-size: cover;
+  width: 30px;
+  height: 30px;
+  margin-right: 50px;
+  margin-top: 16px;
 }

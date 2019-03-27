@@ -26,7 +26,6 @@ export class MainComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        // google.maps.event.addDomListener(window, 'load', this.init);
         this.mapService.initMap(this.mapContainer.nativeElement, this.defaultCenter);
         this.map = this.mapService.getMap();
         this.restaurantService.initService(this.map);
@@ -55,11 +54,15 @@ export class MainComponent implements OnInit {
         this.restaurantService.initRestaurants(pos, '500').subscribe((response) => {
             for (var i = 0; i < response.length; i++) {
                 const place = response[i];
-                this.restaurantsArray.push({
+                const restaurant = {
                     id: i,
                     place: place,
-                    marker: this.mapService.setMarker(place.geometry.location, 'restaurant_red')
-                });
+                    marker: this.mapService.setMarker(place.geometry.location, 'restaurant_red'),
+                    selected: false
+                };
+                restaurant.marker.addListener('mouseover', () => this.onHoverRestaurant(restaurant, 'enter') );
+                restaurant.marker.addListener('mouseout', () => this.onHoverRestaurant(restaurant, 'leave') );
+                this.restaurantsArray.push(restaurant);
             }
         });
     }
@@ -74,11 +77,13 @@ export class MainComponent implements OnInit {
         });
     }
 
-    public hoverRestaurant(restaurant: Restaurant, enterLeave: string) {
+    public onHoverRestaurant(restaurant: Restaurant, enterLeave: string) {
         if (enterLeave === 'enter') {
             this.mapService.setIcon(restaurant.marker, 'restaurant_blue', true);
+            restaurant.selected = true;
         } else {
             this.mapService.setIcon(restaurant.marker, 'restaurant_red', false);
+            restaurant.selected = false;
         }
         
     }

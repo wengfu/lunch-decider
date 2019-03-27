@@ -5,10 +5,12 @@
         <div
                 class="restaurant-item"
                 *ngFor="let restaurant of restaurantsArray; let i = index;"
-                (mouseenter)="hoverRestaurant(restaurant, 'enter')"
-                (mouseleave)="hoverRestaurant(restaurant, 'leave')"
+                (mouseenter)="onHoverRestaurant(restaurant, 'enter')"
+                (mouseleave)="onHoverRestaurant(restaurant, 'leave')"
         >
-            <span class="restaurant-name">{{ restaurant.place.name }}</span>
+            <span class="restaurant-name" [ngClass]="{ 'selected': restaurant.selected }">
+                {{ restaurant.place.name }}
+            </span>
             <span class="remove float-right" (click)="removeRestaurant(restaurant.place.id)">X</span>
         </div>
     </div>

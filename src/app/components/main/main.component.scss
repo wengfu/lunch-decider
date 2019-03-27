@@ -39,6 +39,10 @@
 }
 .restaurant-name{
   font-size: 15px;
+
+  &.selected {
+    color: #5099f0;
+  }
 }
 .remove{
   font-size: 13px;

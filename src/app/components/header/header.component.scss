@@ -1,28 +1,25 @@
-.header-bar{
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 60px;
-  position: fixed;
-  border-bottom: 2px solid #d74828;
-  z-index: 1000;
-}
-.header-inner{
-  padding: 13px 30px;
-  width: 250px;
-  font-size: 25px;
-  color: #d74828;
-  font-family: 'Baloo', cursive;
-  margin-left: 28px;
-}
-.header-right{
-  float: right;
-  position: relative;
-  background: url(../../../assets/icons/GitHub-Mark-64px.png);
-  background-size: cover;
-  width: 30px;
-  height: 30px;
-  margin-right: 60px;
-  margin-top: 16px;
-  cursor: pointer;
+.header-bar {
+    width: 100%;
+    position: fixed;
+    border-bottom: 2px solid #d74828;
+    z-index: 100;
+
+    .header-inner {
+        padding: 10px 0;
+        font-size: 25px;
+        color: #d74828;
+        font-family: 'Baloo', cursive;
+        margin-left: 60px;
+    }
+
+    .header-right {
+        float: right;
+        background: url(../../../assets/icons/GitHub-Mark-64px.png);
+        background-size: cover;
+        width: 30px;
+        height: 30px;
+        margin-right: 60px;
+        margin-top: 16px;
+        cursor: pointer;
+    }
 }

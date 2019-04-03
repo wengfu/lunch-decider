@@ -1,50 +1,56 @@
-.float-right{
-  float: right;
+.float-right {
+    float: right;
 }
-.main-container{
-  padding-top: 60px;
+
+.main-container {
+    padding-top: 60px;
 }
-.maps-container{
-  width: 50%;
-  min-width: 450px;
-  min-height: 450px;
-  float: right;
-  margin: 50px 50px 0 10px;
-  background-color: #eeeeee;
+
+.maps-container {
+    width: 50%;
+    min-width: 450px;
+    min-height: 450px;
+    float: right;
+    margin: 50px 50px 0 10px;
+    background-color: #eeeeee;
 }
-.roulette-container{
-  width: 35%;
-  min-height: 100px;
-  float: left;
-  margin: 50px 10px 10px 50px;
-  background-color: #eeeeee;
+
+.roulette-container {
+    width: 35%;
+    min-height: 100px;
+    float: left;
+    margin: 50px 10px 10px 50px;
+    background-color: #eeeeee;
 }
 
 /* ------- List Container ------- */
 
-.list-container{
-  position: relative;
-  width: 35%;
-  height: 330px;
-  overflow: scroll;
-  float: left;
-  margin: 10px 10px 0 50px;
-  background-color: #eeeeee;
-}
-.restaurant-item{
-  color: #d74828;
-  font-family: 'Baloo', cursive;
-  margin: 3px 20px;
-  cursor: pointer;
-}
-.restaurant-name{
-  font-size: 15px;
+.list-container {
+    position: relative;
+    width: 35%;
+    height: 330px;
+    overflow: scroll;
+    float: left;
+    margin: 10px 10px 0 50px;
+    background-color: #eeeeee;
 
-  &.selected {
-    color: #5099f0;
-  }
-}
-.remove{
-  font-size: 13px;
-  cursor: pointer;
+    .restaurant-item {
+        color: #d74828;
+        font-family: 'Baloo', cursive;
+        margin: 3px 20px;
+        cursor: pointer;
+    }
+
+    .restaurant-name {
+        font-size: 15px;
+
+        &.selected {
+            color: #5099f0;
+        }
+    }
+
+    .remove {
+        font-size: 13px;
+        cursor: pointer;
+    }
 }

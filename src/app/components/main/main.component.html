@@ -1,6 +1,19 @@
 <div class="main-container">
     <div class="maps-container" id="mapContainer" #mapContainer></div>
-    <div class="roulette-container"></div>
+    <div class="roulette-container">
+        <div class="result-box">
+            <span class="restaurant-name"
+                  (mouseenter)="onHoverRestaurant(spinResult, 'enter')"
+                  (mouseleave)="onHoverRestaurant(spinResult, 'leave')"
+                  [ngClass]="{ 'selected': spinResult?.selected }"
+            >
+                {{ spinResult?.place.name }}
+            </span>
+        </div>
+        <div class="button-container">
+            <button class="spin-button" (click)="spinRoulette()">SPIN</button>
+        </div>
+    </div>
     <div class="list-container">
         <div
                 class="restaurant-item"

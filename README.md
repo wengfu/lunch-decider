@@ -2,15 +2,17 @@
 
 ## Pre-requisites
 
-node 8+
+node 8.9.2+
 
 ## Install
+
+`npm install -g @angular/cli@1.7.4`
 
 `npm install`
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:8000/`. The app will automatically reload if you change any of the source files.
+Run `ng serve` for a dev server. Navigate to `http://localhost:8080/`. The app will automatically reload if you change any of the source files.
 
 ## Build
 

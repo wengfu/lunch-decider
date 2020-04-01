@@ -7,8 +7,8 @@ import { Component } from '@angular/core';
 })
 
 export class HeaderComponent {
-    
+
     openGithub() {
-        window.open("https://github.com/wengfu/lunch-decider", "_blank");
+        window.open('https://github.com/wengfu/lunch-decider', '_blank');
     }
 }

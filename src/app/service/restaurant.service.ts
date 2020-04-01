@@ -12,21 +12,21 @@ export class RestaurantService {
 
     public initService(map) {
         this.placesService = new google.maps.places.PlacesService(map);
-    };
+    }
 
     public initRestaurants(center, radius): Observable<any> {
         const request = {
             location: center,
-            radius: radius,
+            radius,
             type: ['restaurant']
         };
-        
+
         return Observable.create((observer) => {
             this.placesService.nearbySearch(request, (results, status) => {
-                if(status == google.maps.places.PlacesServiceStatus.OK){
+                if (status === google.maps.places.PlacesServiceStatus.OK) {
                     observer.next(results);
                 }
             });
         });
-    };
+    }
 }

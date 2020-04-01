@@ -13,13 +13,14 @@ import * as _ from 'lodash';
 
 export class MainComponent implements OnInit {
     @ViewChild('mapContainer') mapContainer: any;
-    
+
     public defaultCenter = { lat: 39.9523789, lng: -75.1635996 };
     public secondMarkerLocation = { lat: 39.234523, lng: -75.2342323 };
     public map: google.maps.Map;
     public restaurantsArray: Restaurant[] = [];
     public userMarker;
-    
+    public spinResult: Restaurant = null;
+
     constructor(
         public mapService: MapService,
         public restaurantService: RestaurantService
@@ -29,13 +30,13 @@ export class MainComponent implements OnInit {
         this.mapService.initMap(this.mapContainer.nativeElement, this.defaultCenter);
         this.map = this.mapService.getMap();
         this.restaurantService.initService(this.map);
-        
-        if(navigator.geolocation){
+
+        if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
                 this.getPositionSuccessCallBack.bind(this),
                 () => this.handleLocationError());
         }
-        
+
         // google.maps.event.addListener(this.map, 'click', function(event){
         //   this.userMarker = new google.maps.Marker({
         //     position: event.latLng,
@@ -45,18 +46,18 @@ export class MainComponent implements OnInit {
     }
 
     public getPositionSuccessCallBack(position) {
-        var pos = {
+        const pos = {
             lat: position.coords.latitude,
             lng: position.coords.longitude
         };
         this.map.setCenter(pos);
         this.mapService.setMarker(pos);
         this.restaurantService.initRestaurants(pos, '500').subscribe((response) => {
-            for (var i = 0; i < response.length; i++) {
+            for (let i = 0; i < response.length; i++) {
                 const place = response[i];
                 const restaurant = {
                     id: i,
-                    place: place,
+                    place,
                     marker: this.mapService.setMarker(place.geometry.location, 'restaurant_red'),
                     selected: false
                 };
@@ -66,10 +67,10 @@ export class MainComponent implements OnInit {
             }
         });
     }
-    
-    public removeRestaurant(restaurantId: number){
+
+    public removeRestaurant(restaurantId: number) {
         this.restaurantsArray = _.filter(this.restaurantsArray, (r) => {
-            if(r.place.id === restaurantId){
+            if (r.place.id === restaurantId) {
                 r.marker.setMap(null);
                 r.marker = null;
             }
@@ -78,14 +79,19 @@ export class MainComponent implements OnInit {
     }
 
     public onHoverRestaurant(restaurant: Restaurant, enterLeave: string) {
-        if (enterLeave === 'enter') {
-            this.mapService.setIcon(restaurant.marker, 'restaurant_blue', true);
-            restaurant.selected = true;
-        } else {
-            this.mapService.setIcon(restaurant.marker, 'restaurant_red', false);
-            restaurant.selected = false;
+        if (restaurant) {
+            if (enterLeave === 'enter') {
+                this.mapService.setIcon(restaurant.marker, 'restaurant_blue', true);
+                restaurant.selected = true;
+            } else {
+                this.mapService.setIcon(restaurant.marker, 'restaurant_red', false);
+                restaurant.selected = false;
+            }
         }
-        
+    }
+
+    public spinRoulette() {
+        this.spinResult = this.restaurantsArray[Math.floor(Math.random() * this.restaurantsArray.length)];
     }
 
     public handleLocationError() {}

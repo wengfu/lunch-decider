@@ -1,3 +1,14 @@
+@mixin restaurant-item {
+    font-size: 15px;
+    color: #d74828;
+    font-family: 'Baloo', cursive;
+    cursor: pointer;
+
+    &.selected {
+        color: #5099f0;
+    }
+}
+
 .float-right {
     float: right;
 }
@@ -23,6 +34,18 @@
     background-color: #eeeeee;
 }
 
+.restaurant-name {
+    @include restaurant-item
+}
+
+/* ------- Roulette Container ------- */
+
+.roulette-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
 /* ------- List Container ------- */
 
 .list-container {
@@ -35,18 +58,8 @@
     background-color: #eeeeee;
 
     .restaurant-item {
-        color: #d74828;
-        font-family: 'Baloo', cursive;
         margin: 3px 20px;
-        cursor: pointer;
-    }
-
-    .restaurant-name {
-        font-size: 15px;
-
-        &.selected {
-            color: #5099f0;
-        }
+        @include restaurant-item
     }
 
     .remove {

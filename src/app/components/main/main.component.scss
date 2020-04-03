@@ -1,13 +1,4 @@
-@mixin restaurant-item {
-    font-size: 15px;
-    color: #d74828;
-    font-family: 'Baloo', cursive;
-    cursor: pointer;
-
-    &.selected {
-        color: #5099f0;
-    }
-}
+@import '../../app.component';
 
 .float-right {
     float: right;

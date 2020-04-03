@@ -1,0 +1,14 @@
+<div class="wrapper">
+    <div class="result-box">
+            <span class="restaurant-name"
+                  (mouseenter)="onHover(spinResult)"
+                  (mouseleave)="onLeave(spinResult)"
+                  [ngClass]="{ 'selected': spinResult?.selected }"
+            >
+                {{ spinResult?.place.name }}
+            </span>
+    </div>
+    <div class="button-container">
+        <button class="spin-button" (click)="spinRoulette()">SPIN</button>
+    </div>
+</div>

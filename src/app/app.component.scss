@@ -1,1 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Baloo');
+
+@mixin restaurant-item {
+  font-size: 15px;
+  color: #d74828;
+  font-family: 'Baloo', cursive;
+  cursor: pointer;
+
+  &.selected {
+    color: #5099f0;
+  }
+}

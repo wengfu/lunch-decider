@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { MainComponent } from './main/main.component';
+import { SlotMachineComponent } from './slot-machine/slot.component';
 
 @NgModule({
     imports: [
@@ -9,11 +10,13 @@ import { MainComponent } from './main/main.component';
     ],
     declarations: [
         HeaderComponent,
-        MainComponent
+        MainComponent,
+        SlotMachineComponent
     ],
     exports: [
         HeaderComponent,
-        MainComponent
+        MainComponent,
+        SlotMachineComponent
     ],
     entryComponents: [],
 })

@@ -1,25 +1,17 @@
 <div class="main-container">
     <div class="maps-container" id="mapContainer" #mapContainer></div>
     <div class="roulette-container">
-        <div class="result-box">
-            <span class="restaurant-name"
-                  (mouseenter)="onHoverRestaurant(spinResult, 'enter')"
-                  (mouseleave)="onHoverRestaurant(spinResult, 'leave')"
-                  [ngClass]="{ 'selected': spinResult?.selected }"
-            >
-                {{ spinResult?.place.name }}
-            </span>
-        </div>
-        <div class="button-container">
-            <button class="spin-button" (click)="spinRoulette()">SPIN</button>
-        </div>
+        <slot-machine [itemArray]="restaurantsArray"
+                      (onHoverItem)="onOverRestaurant($event)"
+                      (onLeaveItem)="onLeaveRestaurant($event)"
+        ></slot-machine>
     </div>
     <div class="list-container">
         <div
                 class="restaurant-item"
                 *ngFor="let restaurant of restaurantsArray; let i = index;"
-                (mouseenter)="onHoverRestaurant(restaurant, 'enter')"
-                (mouseleave)="onHoverRestaurant(restaurant, 'leave')"
+                (mouseenter)="onOverRestaurant(restaurant)"
+                (mouseleave)="onLeaveRestaurant(restaurant)"
         >
             <span class="restaurant-name" [ngClass]="{ 'selected': restaurant.selected }">
                 {{ restaurant.place.name }}

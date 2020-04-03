@@ -61,8 +61,8 @@ export class MainComponent implements OnInit {
                     marker: this.mapService.setMarker(place.geometry.location, 'restaurant_red'),
                     selected: false
                 };
-                restaurant.marker.addListener('mouseover', () => this.onHoverRestaurant(restaurant, 'enter') );
-                restaurant.marker.addListener('mouseout', () => this.onHoverRestaurant(restaurant, 'leave') );
+                restaurant.marker.addListener('mouseover', () => this.onOverRestaurant(restaurant) );
+                restaurant.marker.addListener('mouseout', () => this.onLeaveRestaurant(restaurant) );
                 this.restaurantsArray.push(restaurant);
             }
         });
@@ -78,20 +78,18 @@ export class MainComponent implements OnInit {
         });
     }
 
-    public onHoverRestaurant(restaurant: Restaurant, enterLeave: string) {
+    public onOverRestaurant(restaurant: Restaurant) {
         if (restaurant) {
-            if (enterLeave === 'enter') {
-                this.mapService.setIcon(restaurant.marker, 'restaurant_blue', true);
-                restaurant.selected = true;
-            } else {
-                this.mapService.setIcon(restaurant.marker, 'restaurant_red', false);
-                restaurant.selected = false;
-            }
+            this.mapService.setIcon(restaurant.marker, 'restaurant_blue', true);
+            restaurant.selected = true;
         }
     }
 
-    public spinRoulette() {
-        this.spinResult = this.restaurantsArray[Math.floor(Math.random() * this.restaurantsArray.length)];
+    public onLeaveRestaurant(restaurant: Restaurant) {
+        if (restaurant) {
+            this.mapService.setIcon(restaurant.marker, 'restaurant_red', false);
+            restaurant.selected = false;
+        }
     }
 
     public handleLocationError() {}

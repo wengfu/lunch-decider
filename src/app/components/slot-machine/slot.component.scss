@@ -1,0 +1,17 @@
+@import '../../app.component';
+
+.wrapper {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+    .result-box {
+        width: 250px;
+        display: flex;
+        justify-content: center;
+    }
+}
+
+.restaurant-name {
+    @include restaurant-item
+}

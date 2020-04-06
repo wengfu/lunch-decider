@@ -1,14 +1,21 @@
 <div class="wrapper">
-    <div class="result-box">
-            <span class="restaurant-name"
-                  (mouseenter)="onHover(spinResult)"
-                  (mouseleave)="onLeave(spinResult)"
-                  [ngClass]="{ 'selected': spinResult?.selected }"
+    <div class="list-mask">
+        <ul class="result-box"
+            [@scroll]="{ value: state, params: { scrollHeight: scrollHeight }}"
+            (@scroll.done)="rotateItemArray()"
+        >
+            <li class="restaurant-name list-item"
+                [style.height]="itemHeight + 'px'"
+                *ngFor="let r of extendedItemArray"
+                (mouseenter)="onHover(r)"
+                (mouseleave)="onLeave(r)"
+                [ngClass]="{ 'selected': r?.selected }"
             >
-                {{ spinResult?.place.name }}
-            </span>
+                {{ r.place.name }}
+            </li>
+        </ul>
     </div>
     <div class="button-container">
-        <button class="spin-button" (click)="spinRoulette()">SPIN</button>
+        <button class="spin-button" (click)="spinIt()">SPIN</button>
     </div>
 </div>

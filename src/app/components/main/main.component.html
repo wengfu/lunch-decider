@@ -1,7 +1,8 @@
 <div class="main-container">
     <div class="maps-container" id="mapContainer" #mapContainer></div>
     <div class="roulette-container">
-        <slot-machine [itemArray]="restaurantsArray"
+        <slot-machine *ngIf="restaurantsArray.length"
+                      [itemArray]="restaurantsArray"
                       (onHoverItem)="onOverRestaurant($event)"
                       (onLeaveItem)="onLeaveRestaurant($event)"
         ></slot-machine>

@@ -5,10 +5,23 @@
     justify-content: space-evenly;
     align-items: center;
 
-    .result-box {
+    .list-mask {
+        position: relative;
+
         width: 250px;
-        display: flex;
-        justify-content: center;
+        overflow: hidden;
+        height: 20px;
+
+        .result-box {
+            animation-duration: 1s;
+            animation-fill-mode: forwards;
+            position: absolute;
+            margin-top: 0;
+
+            .list-item {
+                list-style-type: none;
+            }
+        }
     }
 }
 

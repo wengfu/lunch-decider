@@ -20,6 +20,7 @@ export class MainComponent implements OnInit {
     public restaurantsArray: Restaurant[] = [];
     public userMarker;
     public spinResult: Restaurant = null;
+    public showBackdrop = true;
 
     constructor(
         public mapService: MapService,
@@ -34,7 +35,10 @@ export class MainComponent implements OnInit {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
                 this.getPositionSuccessCallBack.bind(this),
-                () => this.handleLocationError());
+                this.handleLocationError,
+            );
+        } else {
+            alert('Geolocation is not supported by this browser.');
         }
 
         // google.maps.event.addListener(this.map, 'click', function(event){
@@ -53,6 +57,7 @@ export class MainComponent implements OnInit {
         this.map.setCenter(pos);
         this.mapService.setMarker(pos);
         this.restaurantService.initRestaurants(pos, '500').subscribe((response) => {
+            this.showBackdrop = false;
             for (let i = 0; i < response.length; i++) {
                 const place = response[i];
                 const restaurant = {
@@ -92,5 +97,22 @@ export class MainComponent implements OnInit {
         }
     }
 
-    public handleLocationError() {}
+    public handleLocationError(error) {
+        let errorMessage = '';
+        switch (error.code) {
+            case error.PERMISSION_DENIED:
+                errorMessage = 'Location access blocked.';
+                break;
+            case error.POSITION_UNAVAILABLE:
+                errorMessage = 'Location information is unavailable.';
+                break;
+            case error.TIMEOUT:
+                errorMessage = 'The request to get user location timed out.';
+                break;
+            case error.UNKNOWN_ERROR:
+                errorMessage = 'An unknown error occurred.';
+                break;
+        }
+        alert(errorMessage);
+    }
 }

@@ -1,4 +1,9 @@
-<div class="main-container">
+<div class="loading d-flex vh-100 vw-100 justify-content-center align-items-center"
+     *ngIf="showBackdrop"
+>
+    <div class="spinner-border" role="status"></div>
+</div>
+<div class="main-container" [class.backdrop]="showBackdrop">
     <div class="maps-container" id="mapContainer" #mapContainer></div>
     <div class="roulette-container">
         <slot-machine *ngIf="restaurantsArray.length"

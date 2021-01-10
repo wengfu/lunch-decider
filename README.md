@@ -2,11 +2,10 @@
 
 ## Pre-requisites
 
-node 8.9.2+
+node 10+
+npm 6+
 
 ## Install
-
-`npm install -g @angular/cli@1.7.4`
 
 `npm install`
 

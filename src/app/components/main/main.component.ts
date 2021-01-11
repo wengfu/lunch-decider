@@ -75,11 +75,11 @@ export class MainComponent implements OnInit {
 
     public removeRestaurant(restaurantId: number) {
         this.restaurantsArray = _.filter(this.restaurantsArray, (r) => {
-            if (r.place.id === restaurantId) {
+            if (r.id === restaurantId) {
                 r.marker.setMap(null);
                 r.marker = null;
             }
-            return r.place.id !== restaurantId;
+            return r.id !== restaurantId;
         });
     }
 

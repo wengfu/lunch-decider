@@ -22,7 +22,7 @@
             <span class="restaurant-name" [ngClass]="{ 'selected': restaurant.selected }">
                 {{ restaurant.place.name }}
             </span>
-            <span class="remove float-right" (click)="removeRestaurant(restaurant.place.id)">X</span>
+            <span class="remove float-right" (click)="removeRestaurant(restaurant.id)">X</span>
         </div>
     </div>
 </div>

@@ -1,9 +1,9 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { Restaurant } from '../../models/restaurant.interface';
 
 const ITEM_HEIGHT = 24;
-const MIN_SPIN = 13;
+const MIN_SPIN = 5;
 
 @Component({
     selector: 'slot-machine',
@@ -27,7 +27,7 @@ const MIN_SPIN = 13;
     ]
 })
 
-export class SlotMachineComponent implements OnInit {
+export class SlotMachineComponent implements OnInit, OnChanges {
     public itemHeight = ITEM_HEIGHT;
     public spinCount = 0;
     public extendedItemArray: Restaurant[] = [];
@@ -39,7 +39,13 @@ export class SlotMachineComponent implements OnInit {
     @Output() onLeaveItem: EventEmitter<Restaurant> = new EventEmitter<Restaurant>();
 
     ngOnInit(): void {
-        this.extendedItemArray = [...this.itemArray, ...this.itemArray];
+        this.generateList();
+    }
+
+    ngOnChanges(changes: SimpleChanges): void {
+        if (changes.itemArray) {
+            this.generateList();
+        }
     }
 
     public spinIt() {
@@ -59,5 +65,9 @@ export class SlotMachineComponent implements OnInit {
 
     public onLeave(r: Restaurant) {
         this.onLeaveItem.emit(r);
+    }
+
+    private generateList() {
+        this.extendedItemArray = [...this.itemArray, ...this.itemArray];
     }
 }
